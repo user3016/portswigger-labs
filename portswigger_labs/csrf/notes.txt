@@ -1,0 +1,23 @@
+CSRF Attacks
+
+1. Relevant action
+2. cookie based session validation
+3. unpredictable request parameters
+
+To perform a GET request => <img src="TARGET URL">
+To perform a POST request => <form> </form> with hidden input fields and auto submit: document.forms[0].submit() and the target is the target url
+
+white box prespective:
+Identify the framework and find out how its built it defenses work.
+
+Primary Defenses:
+1. CSRF tokens => unpredictable / tied to the user session / validated
+
+Secondary Defenses:
+SameSite cookies
+1. Strict
+2. Lax
+3. None
+
+Inadequate Defenses:
+1. HTTP Referer Header:
