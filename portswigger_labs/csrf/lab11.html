@@ -13,3 +13,6 @@
     </script>
   </body>
 </html>
+<!--
+The vulnerability here is that the backend checks the referrer header only if it exists. And if it does not exist, then the request is accepted without performing any checks.
+-->
