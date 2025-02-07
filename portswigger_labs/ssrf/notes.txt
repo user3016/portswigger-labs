@@ -1,0 +1,24 @@
+SSRF is a vulnerability in web applications that allows a user to modify client side requests to access other servers or services in the internal network.
+
+Exploiting SSRF
+
+##1- Regular / In-Band SSRF:
+=> If the application accepts user-supplied URLs:
+1. Check if a port number can be specefied.
+
+2. If yes, attempty to port-scan the internal network using burp intruder.
+
+3. Attempt to connect to other services on the loopback address.
+
+=> If the application does not accept user-supplied URLs:
+1. try different encoding schemes
+=> 127.0.0.1 / localhost / hexadecimal encoding / octal encoding / 127.1 / 127.01 / ::1 / long-to-short ip converter
+
+2. Register a domain name that resolves to internal IP address (DNS Rebinding) inside.sec-down.com
+
+3. Use your own server to redirect to an internal IP address (HTTP Redirection)
+
+4. Exploit URL parser
+
+##2- Blind / Out-of-Band SSRF
+1. Attempt to make the vulnerable server send an HTTP/DNS/ICMP request to an external server that you control and then check the logs for any connections.
