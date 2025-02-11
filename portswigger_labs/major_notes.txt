@@ -1,6 +1,6 @@
-Black Box testing: just the URL and scope
-White Box testing: access to the source code
-Grey Box testing: mix of black and White
+Black Box testing: just the URL and scope.
+White Box testing: access to the source code.
+Grey Box testing: mix of black and White.
 
 
 
