@@ -40,3 +40,10 @@ Access control is the process of defining and enforcing who can access what reso
 - **Access Control** governs what resources the authenticated and active user can access and what actions they can perform.
 
 These three work together to secure systems by ensuring only authenticated users can access the system, tracking their activities during a session, and enforcing the correct level of access throughout their interaction with the system.
+
+
+## Access Control Types
+1. Vertical access controls
+2. Horizontal access controls
+3. Context-dependent access controls
+
