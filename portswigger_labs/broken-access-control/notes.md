@@ -47,3 +47,5 @@ These three work together to secure systems by ensuring only authenticated users
 2. Horizontal access controls
 3. Context-dependent access controls
 
+## IDOR
+Insecure direct object references (IDOR) are a type of access control vulnerability that arises when an application uses user-supplied input to access objects directly.
